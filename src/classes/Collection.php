@@ -1,15 +1,19 @@
 <?php
 
 class Collection implements CollectionInterface{
-    protected $repo;
+    protected $repo, $entity;
     public $collection;
 
     public function __construct(RepositoryInterface $repo, $id = null, $field = 'id'){
         $this->repo = $repo;
         if(!empty($id)){
-            $this->collection = $this->repo->find('posts', $id, $field);
+            //$this->collection = $this->repo->find('posts', $id, $field);
+            $this->collection = $this->repo->find($this->entity, $id, $field);
+
         }else{
-            $this->collection = $this->repo->all('posts');
+            //$this->collection = $this->repo->all('posts');
+            $this->collection = $this->repo->all($this->entity);
+
         }
     }
 

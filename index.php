@@ -1,7 +1,7 @@
 <?php
 require_once "src/config.php";
 if(isset($_GET['id'])){
-    $content = new Collection(
+    $content = new Posts(
         $repo,
         filter_input(
             INPUT_GET,
@@ -14,7 +14,7 @@ if(isset($_GET['id'])){
 if(isset($content) && $content->count() == 1 && $content->current()->status == "published"){
     $title = $content->current()->title;
 }else{
-    $content = new Collection($repo);
+    $content = new Posts($repo);
     $title = "My Website";
 }
 
