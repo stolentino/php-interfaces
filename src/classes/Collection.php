@@ -1,11 +1,12 @@
 <?php
 
-class Collection implements CollectionInterface{
+abstract class Collection implements CollectionInterface{
     protected $repo, $entity;
     public $collection;
 
     public function __construct(RepositoryInterface $repo, $id = null, $field = 'id'){
         $this->repo = $repo;
+        $this->setEntity();
         if(!empty($id)){
             //$this->collection = $this->repo->find('posts', $id, $field);
             $this->collection = $this->repo->find($this->entity, $id, $field);
@@ -55,4 +56,6 @@ class Collection implements CollectionInterface{
         //var_dump(__METHOD__);
         return count($this->collection);
     }
+
+    abstract protected function setEntity();
 }
