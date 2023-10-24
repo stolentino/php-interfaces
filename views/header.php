@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $title; ?></title>
+    <title><?php echo $content->getTitle(); ?></title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
@@ -40,5 +40,5 @@
 <!-- Begin page content -->
 <div class="container">
     <div class="page-header">
-        <h1><?php echo $title; ?></h1>
+        <h1><?php echo $content->getTitle(); ?></h1>
     </div>

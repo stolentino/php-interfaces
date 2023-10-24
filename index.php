@@ -11,11 +11,8 @@ if(isset($_GET['id'])){
         );
 }
 
-if(isset($content) && $content->count() == 1 && $content->current()->status == "published"){
-    $title = $content->current()->title;
-}else{
+if(!isset($content) || $content->count() != 1 || $content->current()->status != "published"){
     $content = new Posts($repo);
-    $title = "My Website";
 }
 
 

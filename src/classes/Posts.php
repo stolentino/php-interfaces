@@ -7,6 +7,13 @@ class Posts extends Collection implements TrackableInterface, ShareableInterface
         //parent::__construct($repo, $id, $field);
     }
 
+    public function getTitle(){
+        if($this->count() === 1){
+            return $this->current()->title;
+        }
+        return 'Latest Posts';
+    }
+
     public function getAuthor(){
         $user = $this->repo->find('users', $this->current()->author)[0];
         if(empty($user->name)){
