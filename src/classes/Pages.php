@@ -8,4 +8,8 @@ class Pages extends Collection{
     public function getTitle(){
         return $this->current()->title;
     }
+
+    public function featuredImage(){
+        return $this->current()->image;
+    }
 }

@@ -25,9 +25,27 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <!-- add page navigation //-->
+                    <?php
+                        foreach (new Pages($repo) as $page){
+                            echo '<li class="nave-item';
+                            if(isset($slug) && $slug == $page->slug){
+                                echo ' active';
+                            }
+                            echo '">';
+                            echo '<a class="nav-link" href="index.php?slug=' . $page->slug .'">';
+                            echo ucwords(str_replace('-', ' ', $page->slug));
+                            echo '</a></li>';
+                        }
+                    ?>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-md-0">
                     <!-- add Latest News link //-->
+                    <li class="nav-item<?php
+                    if($_SERVER['SCRIPT_NAME'] == '/interfaces/blog.php'){
+                        echo ' active';
+                    }
+                    ?>">
+                        <a class="nav-link" href="blog.php">Latest Blog Post</a>
                 </ul>
             </div>
         </nav>
@@ -36,6 +54,16 @@
 </div>
 
 <!-- Add featured page image //-->
+<?php if ($content instanceof Pages){ ?>
+ <!-- Begin page Image -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+       <div class="carousel-inner" role="listbox">
+           <div class="carousel-item active">
+               <img class="first-slide" src="assets/img/<?php echo $content->featuredImage(); ?>" alt="First slide">
+           </div>
+       </div>
+   </div>
+<?php } ?>
 
 <!-- Begin page content -->
 <div class="container">
